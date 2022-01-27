@@ -1,0 +1,28 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+    <h2>Cadastro Evento</h2>
+    <form action="submit" method="POST">
+        {% csrf_token %}
+        <div align="left">
+            <label>Título:</label><br/>
+            <input style="margin-bottom:5px" type="number" hidden name="id_evento" value="{{ eventos.id }}" size="23" >
+            <input style="margin-bottom:5px" type="text" name="titulo" value="{{ eventos.titulo }}" size="23" ><br/>
+            <label>Descrição:</label><br/>
+            <input style="margin-bottom:5px" type="text" name="descricao" value="{{ eventos.descricao }}" rows="5" cols="24"><br/>
+            <label>Local:</label><br/>
+            <input style="margin-bottom:5px" type="text" name="local" value="{{ eventos.local }}"  size="25"><br/>
+            <label>Data Evento:</label><br/>
+            <input style="margin-bottom:5px" type="datetime-local" name="data_evento" value="{{ eventos.data_evento_format_input }}" ><br/>
+            <button type="submit">Cadastrar</button>
+            <a href="/">
+                <button type="button">Voltar</button>
+            </a>
+        </div>
+    </form>
+    {% for message in messages %}
+        <div align="center">
+            <strong>Erro</strong> {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}

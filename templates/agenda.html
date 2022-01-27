@@ -1,0 +1,25 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+    <h2>Agendamentos</h2>
+    <a href="/agenda/cadevento">
+        <button type="button">Novo Evento</button>
+    </a>
+    <b> {{  evento.titulo  }} </b>
+    <ul>
+        {% for item in eventos %}
+          <li>
+              <div style={% if item.get_eventos_atrasados %} "color:red" {% endif %}  >
+                  {{  item.titulo  }} - {{  item.data_evento_format  }}
+                    <a href="/agenda/cadevento?id={{  item.id  }}">
+                        Editar
+                    </a>
+                    |
+                    <a href="/agenda/delete/{{  item.id  }}">
+                        Excluir
+                    </a>
+              </div>
+          </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
